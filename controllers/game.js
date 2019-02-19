@@ -5,23 +5,18 @@ let controller = {
 
 getGame:  function (req, res) {
   let gameId = req.params.gameId
-  console.log(`API-GET () ${gameId}`);
 
   Game.findById(gameId, (err, game) => {
     if (err) return res.status(500).send({message: `Error al realizar la petición: ${err}`});
     if (!game) return res.status(404).send({message: `El juego no existe`});
 
-    res.status(200).send( {'titulo':game.titulo,'fabricante':game.fabricante,
-                        'poster':game.poster})
+    res.status(200).send( game)
   })
   //. select('titulo, descripcion, poster')
 },
 
 getGames: function (req, res) {
-  Game
-  .find({})
-  .select('titulo ')
-  .exec( (err, juegos) => {
+  Game.find({}, (err, juegos) => {
     if (err) return res.status(500).send({message: `Error al realizar la petición: ${err}`});
     if (!juegos) return res.status(404).send({message: `No existen juegos`});
 

@@ -9,6 +9,10 @@
   },
   "author": "Raul Ortega",
   "license": "MIT",
+  "repository": {
+      "type": "git",
+      "url": "https://github.com/anarkotico/apiNode-juegos.git"
+  },
   "dependencies": {
     "bcrypt-nodejs": "0.0.3",
     "body-parser": "^1.15.2",
