@@ -1,0 +1,22 @@
+<script type="text/javascript">
+  let gameList = document.createElement('ul')
+
+  const myHeaders = new Headers();
+  myHeaders.append('authorization', `Bearer ${localStorage.token}`)
+
+  fetch('/api/game', {
+    method: 'GET',
+    headers: myHeaders
+  })
+  .then(res => res.json())
+  .then(data => {
+    data.games.map(game => {
+      let text = document.createTextNode(game.titulo)
+      let elem = document.createElement('li')
+      elem.appendChild(text)
+      gameList.appendChild(elem)
+    })
+
+    document.body.appendChild(gameList)
+  })
+</script>
