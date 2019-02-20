@@ -1,6 +1,7 @@
 'use strict'
 
 const Game = require('../models/games')
+const User = require('../models/user')
 let controller = {
 
 getGame:  function (req, res) {
@@ -50,14 +51,24 @@ saveGame: function (req, res) {
 updateGame: function (req, res) {
   let gameId = req.params.gameId;
   let update = req.body;
-  //let user = req.user.email;
+  console.log(req.body);
+  if(gameId == null ) return res.status(500).send('Error- Necesitas una idGame como param para actualizar');
 
-  Game.findById(gameId, (err, game) => {
-    if (err) res.status(500).send({message: `Error, no se encuentra el juego: ${err}`});
-    game.updateOne(update,(err,gameUpdated) => {
-      if (err) res.status(500).send({message: `Error al actualizar el juego: ${err}`});
-      res.status(200).send({ game: gameUpdated });
-       })
+  Game.findByIdAndUpdate(gameId, update, (err, gameUpdated) => {
+    if (err) res.status(500).send({message: `Error al actualizar el juego: ${err}`});
+
+    res.status(200).send({ game: gameUpdated });
+  })
+},
+
+rateGame: function (req, res) {
+  let gameId = req.params.gameId;
+  let newRate = {"user": req.body.user, "rate": req.body.puntos};
+  if(gameId == null ) return res.status(500).send('Error- Necesitas un idGame como param para puntuar');
+  Game.findOneAndUpdate({gameId}, { $push: { "rates": newRate }}, (err, gameRated) => {
+     if(err) res.status(500).send({message: `Error al puntuar el juego: ${err}`});
+
+     res.status(200).send({ game: gameRated });
   })
 },
 

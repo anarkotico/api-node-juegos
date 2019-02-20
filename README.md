@@ -1,5 +1,4 @@
 # node-api-rest-2017
-API REST con Node.js utilizada en el curso gratis de Youtube.
+API REST con Node.js para mantenimiento de BD Mongo de Juegos
 
-➡️ **[Curso de Node.js y MongoDB - Crea un API REST desde cero](https://www.youtube.com/playlist?list=PLUdlARNXMVkk7E88zOrphPyGdS50Tadlr
-)** 
+➡️ **DWEC -2º DAW** 

@@ -10,9 +10,9 @@ const api = express.Router();
 api.get('/games', gameCtrl.getGames);
 api.get('/games/:gameId', gameCtrl.getGame);
 //api.post('/games', auth, gameCtrl.saveGame);
-api.post('/games', gameCtrl.saveGame);
-api.put('/games/:gameId', gameCtrl.updateGame);
-api.delete('/games/:gameId', gameCtrl.deleteGame);
+api.post('/games',  gameCtrl.saveGame);
+api.put('/games/:gameId',  gameCtrl.updateGame);
+api.delete('/games/:gameId', auth, gameCtrl.deleteGame);
 api.post('/signup', userCtrl.signUp);
 api.post('/signin', userCtrl.signIn);
 api.get('/private', (req, res) => {
